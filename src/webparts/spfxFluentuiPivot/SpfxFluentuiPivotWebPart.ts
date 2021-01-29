@@ -11,9 +11,7 @@ import SpfxFluentuiPivot from './components/SpfxFluentuiPivot';
 import { ISpfxFluentuiPivotProps } from './components/ISpfxFluentuiPivotProps';
 import { PropertyFieldSitePicker } from '@pnp/spfx-property-controls/lib/PropertyFieldSitePicker';
 import { IPropertyFieldSite } from "@pnp/spfx-property-controls/lib/PropertyFieldSitePicker";
-
 export interface ISpfxFluentuiPivotWebPartProps {
-  description: string;
   site: IPropertyFieldSite[];
 }
 
@@ -23,7 +21,6 @@ export default class SpfxFluentuiPivotWebPart extends BaseClientSideWebPart<ISpf
     const element: React.ReactElement<ISpfxFluentuiPivotProps> = React.createElement(
       SpfxFluentuiPivot,
       {
-        description: this.properties.description,
         context: this.context,
         site: this.properties.site
       }
@@ -50,10 +47,7 @@ export default class SpfxFluentuiPivotWebPart extends BaseClientSideWebPart<ISpf
           groups: [
             {
               groupName: strings.BasicGroupName,
-              groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
-                }),
+              groupFields: [                
                 PropertyFieldSitePicker('site', {
                   label: 'Select sites',
                   initialSites: this.properties.site,

@@ -31,19 +31,17 @@ export default class SpfxFluentuiPivot extends React.Component<ISpfxFluentuiPivo
   }
 
   public async getSiteUsres() {
-    if (this.props.site.length) {
+    if (this.props.site && this.props.site.length) {
       let siteUrl = this.props.site[0].url;
       let users = await this._spService.getCurrentSiteUsers(siteUrl);
-      console.log("users =>", siteUrl, users)
       this.setState({ siteUsres: users });
     }
   }
 
   public async getSiteGroups() {
-    if (this.props.site.length) {
+    if (this.props.site && this.props.site.length) {
       let siteUrl = this.props.site[0].url;
       let groups = await this._spService.getCurrentSiteGroups(siteUrl);
-      console.log("Groups =>", siteUrl, groups);
       this.setState({ siteGroups: groups });
     }
   }
@@ -59,7 +57,7 @@ export default class SpfxFluentuiPivot extends React.Component<ISpfxFluentuiPivo
     return (
       <React.Fragment>
         {
-          this.props.site.length ?
+          this.props.site && this.props.site.length ?
             <React.Fragment>
               <Label>Selected Site: {this.props.site[0].title}</Label>
               <Pivot aria-label="Count and Icon Pivot Example">
